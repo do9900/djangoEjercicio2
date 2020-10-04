@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% block contenedor %}
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="card card-body">
+            <p class="display-4 text-center">Editar Usuario</p>
+            <p class="small"><b>{{mensaje}}</b></p>
+            <div class="form-group">
+                <form action="" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                            <hr>
+                        <input type="submit" name="Submit">
+                </form>
+            </div> 
+		</div>
+	</div>
+</div>
+
+{% endblock %}

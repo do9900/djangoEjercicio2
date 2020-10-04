@@ -1,0 +1,45 @@
+{% extends 'core/base.html'  %}
+{% block contenedor %}
+{% load static %}
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="{% static 'core/js/eliminarUsuario.js' %}"></script>
+{% endblock %}
+
+<div class="container">
+    <p class="display-4">Usuarios</p>
+    <p>Crear Usuario<a type="button" class="btn btn-outline-primary" href="{% url 'crear_usuario' %}">Crear</a></p>
+    
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Ap paterno</th>
+            <th scope="col">Ap materno</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Ver</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for us in usuario %}
+        <tr>
+            <th scope="row">{{ us.id }}</th>
+            <td>{{ us.nombre }}</td>
+            <td>{{ us.apellido_pat }}</td>
+            <td>{{ us.apellido_mat }}</td>
+            <td>{{ us.edad }}</td>
+            <td><a class="btn btn-sm btn-info" href="{% url 'ver_usuario' us.id %}">Ver</a></td>
+            <td><a class="btn btn-sm btn-info" href="{% url 'editar_usuario' us.id %}">Editar</a></td>
+            <td><a class="btn btn-sm btn-danger" href="#" onclick="confirmarEliminacion({{ us.id }})">Quitar</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+   
+</div>
+
+{% endblock %}
+
